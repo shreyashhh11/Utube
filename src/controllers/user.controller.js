@@ -234,6 +234,7 @@ const loginUser = asyncHandler(async (req, res) => {
         .json(new ApiResponse(200, {} , "password change successfully"))
 
     })
+
     const getCurrentUser = asyncHandler(async(req, res) =>{
         return res
         .status(200)
@@ -251,8 +252,8 @@ const loginUser = asyncHandler(async (req, res) => {
             req.user?._id,
             {
                 $set : {
-                    fullName,
-                    email
+                    fullName : fullName,
+                    email : email
                 }
             },
             {new : true}
@@ -264,6 +265,66 @@ const loginUser = asyncHandler(async (req, res) => {
     
     })
 
+    const updateUserAvatar = asyncHandler(async(req, res) => {
+        const avatarLoacalPath = req.file?.path
+
+        if(!avatarLoacalPath){
+            throw new ApiError(200, "need a avatar file to upload")
+        }
+
+        const avatar = await uploadOnCloudinary(avatarLoacalPath)
+
+        if(!avatar.url){
+            throw new ApiError(400, "missing avatar file url to upload")
+        }
+
+        const user = await User.findByIdAndUpdate(
+            req.user?._id,
+            {
+                $set :{
+                    avatar = avatar.url
+                }
+            },
+            {new : true}
+        ).select("-password")
+
+        return res
+        .status(200)
+        .json(
+            new ApiResponse(200, user, "avatar image chnaged successfully ")
+        )
+    })
+
+    const updateUserCoverImage = asyncHandler(async(req, res) => {
+        const coverImageLoacalPath = req.file?.path
+
+        if(!coverImageLoacalPath){
+            throw new ApiError(200, "need a cover file to upload")
+        }
+
+        const coverImage = await uploadOnCloudinary(coverImageLoacalPath)
+
+        if(!coverImage.url){
+            throw new ApiError(400, "missing coverImage file url to upload")
+        }
+
+        const user = await User.findByIdAndUpdate(
+            req.user?._id,
+            {
+                $set :{
+                    coverImage : coverImage.url
+                }
+            },
+            {new : true}
+        ).select("-password")
+
+        return res
+        .status(200)
+        .json(
+            new ApiResponse(200, user, "coverImage image chnaged successfully ")
+        )
+    })
+
 export {
     registerUser,
     loginUser,
@@ -271,6 +332,8 @@ export {
     refereshAccessToken,
     changeCurrentPassword,
     getCurrentUser,
-    updateAccountDetails
+    updateAccountDetails,
+    updateUserAvatar,
+    updateUserCoverImage,
 
 }
