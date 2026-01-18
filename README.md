@@ -26,11 +26,10 @@ This project implements core backend features for a video hosting platform with 
 | Layer | Technology |
 |-------|------------|
 | Backend | Node.js, Express |
-| Database | (e.g., MongoDB / PostgreSQL – specify what you are using) |
+| Database | MongoDB |
 | Authentication | JWT, Bcrypt |
 | Uploads | Multer (file handling) |
-| Validation | (Add if using anything like Joi or express-validator) |
-| Environment Config | dotenv |
+| Validation | (MiddleWares) |
 | Code Formatting | Prettier |
 
 🧠 *The backend structure and styling are influenced by the “Chai aur Code” backend backend series on YouTube.* :contentReference[oaicite:0]{index=0}
