@@ -94,20 +94,6 @@ npm start
 Server will start on:
 
 http://localhost:5000
-📌 API Endpoints
-Here are some common API endpoints (actual routes depend on your implementation):
-
-Method	Endpoint	Description
-POST	/api/auth/register	Create new user
-POST	/api/auth/login	Login user
-POST	/api/videos/upload	Upload video
-GET	/api/videos/:id	Get video details
-POST	/api/comments/:videoId	Add comment
-PUT	/api/like/:videoId	Like video
-PUT	/api/dislike/:videoId	Dislike video
-PUT	/api/subscribe/:userId	Subscribe to a channel
-DELETE	/api/videos/:id	Delete video
-(You should update this list to reflect your actual route structure.)
 
 🧠 Authentication
 This project uses JWT tokens for secure user authentication with:
