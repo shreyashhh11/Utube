@@ -32,7 +32,7 @@ This project implements core backend features for a video hosting platform with 
 | Validation | (MiddleWares) |
 | Code Formatting | Prettier |
 
-🧠 *The backend structure and styling are influenced by the “Chai aur Code” backend backend series on YouTube.* :contentReference[oaicite:0]{index=0}
+🧠 *The backend structure and styling are influenced by the “Chai aur Code” backend backend series on YouTube.
 
 ---
 
